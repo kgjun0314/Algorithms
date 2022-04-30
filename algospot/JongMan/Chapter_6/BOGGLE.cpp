@@ -22,12 +22,12 @@ bool HasWord(int x, int y, const string& Word)
     if(Board[x][y] != Word[0])
         return false;
     
-    if (Word.size() == 1)
+    if(Word.size() == 1)
         return true;
     
     for(int i = 0; i < 8; i++)
     {
-        int Del_x = x + dx[i], Del_y= y + dy[i];
+        int Del_x = x + dx[i], Del_y = y + dy[i];
         if(HasWord(Del_x, Del_y, Word.substr(1)))
             return true;
     }
@@ -63,6 +63,7 @@ int main(void)
                     if(HasWord(x, y, Word))
                     {
                         flag = true;
+                        break;
                     }
                 }
             if(flag)
