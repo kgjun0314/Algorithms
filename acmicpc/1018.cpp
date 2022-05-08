@@ -41,7 +41,6 @@ int WB_cnt(int x, int y)
             if(Board[x+i][y+j] != WB[i][j])
                 cnt++;
         }
-
     }
     return cnt;
 }
@@ -56,7 +55,6 @@ int BW_cnt(int x, int y)
             if(Board[x+i][y+j] != BW[i][j])
                 cnt++;
         }
-
     }
     return cnt;
 }
