@@ -9,7 +9,7 @@ void GetMinimumCost()
 {
 	int Sum = 0;
 	double Average;
-	Min = 987654321;
+	Min = 98765432;
 	
 	for(int i = 1; i <= N - L + 1; i++) // i:1번 인덱스 부터, i:N-L+1번 인덱스를 시점으로 설정
 	{
