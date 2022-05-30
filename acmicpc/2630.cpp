@@ -4,37 +4,52 @@
 #include <algorithm>
 using namespace std;
 
-int paper[129][129];
+int M[129][129];
 int b = 0, w = 0;
 
 void solve(int x, int y, int n)
 {
-    int temp = 0;
+    int start = M[x][y];
+    bool flag = true;
+    
     for(int i = x; i < x + n; i++)
     {
         for(int j = y; j < y + n; j++)
         {
-            if(paper[i][j])
+            if(M[i][j] != start)
             {
-                temp++;
+                flag = false;
+                break;
             }
+        }
+        if(flag == false)
+        {
+            break;
         }
     }
     
-    if(!temp)
-        w++;
-    else if(temp == n * n)
-        b++;
+    if(flag == true)
+    {
+        if(start == 1)
+        {
+            b++;
+        }
+        else if(start == 0)
+        {
+            w++;
+        }
+    }
+    
     else
     {
-        // i
-        solve(x, y, n / 2);
-        // ii
-        solve(x, y + n / 2, n / 2);
-        // iii
-        solve(x + n / 2, y, n / 2);
-        // iv
-        solve(x + n / 2, y + n / 2, n / 2);
+        int size = n / 2;
+        for(int i = 0; i < 2; i++)
+        {
+            for(int j = 0; j < 2; j++)
+            {
+                solve(x + size * i, y + size * j, size);
+            }
+        }
     }
     return;
 }
@@ -46,14 +61,12 @@ int main(void)
     cout.tie(0);
 
     int N;
-    memset(paper, 0, sizeof(int));
-    
     cin >> N;
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < N; j++)
         {
-            cin >> paper[i][j];
+            cin >> M[i][j];
         }
     }
     
