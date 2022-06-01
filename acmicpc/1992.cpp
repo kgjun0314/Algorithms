@@ -6,16 +6,16 @@ using namespace std;
 
 int M[64][64];
 
-void solve(int x, int y, int N)
+void solve(int y, int x, int N)
 {
     int start = M[y][x];
     bool flag = true;
     
-    for(int i = y; i < y + N; i++)
+    for(int j = y; j < y + N; j++)
     {
-        for(int j = x; j < x + N; j++)
+        for(int i = x; i < x + N; i++)
         {
-            if(M[i][j] != start)
+            if(M[j][i] != start)
             {
                 flag = false;
                 break;
@@ -44,10 +44,10 @@ void solve(int x, int y, int N)
         int size = N / 2;
     
         cout << "(";
-        solve(x, y, size);
-        solve(x + size, y, size);
-        solve(x, y + size, size);
-        solve(x + size, y + size, size);
+        solve(y, x, size);
+        solve(y, x + size, size);
+        solve(y + size, x, size);
+        solve(y + size, x + size, size);
         cout << ")";
     }
     
@@ -63,13 +63,13 @@ int main(void)
     int N;
     cin >> N;
     
-    for(int i = 0; i < N; i++)
+    for(int j = 0; j < N; j++)
     {
         string s;
         cin >> s;
-        for(int j = 0; j < N; j++)
+        for(int i = 0; i < N; i++)
         {
-            M[i][j] = s[j] - '0';
+            M[j][i] = s[i] - '0';
         }
     }
     
