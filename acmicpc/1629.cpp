@@ -6,13 +6,16 @@ using namespace std;
 
 long long solve(long long A, long long B, long long C)
 {
-    if(B == 1)
-        return A % C;
-    
-    if(B % 2 == 0)
-        return (solve(A, B / 2, C) % C) * (solve(A, B / 2, C) % C) % C;
-    else
-        return ((solve(A, B / 2, C) % C) * (solve(A, B / 2, C) % C) % C) * A % C;
+    long long result = 1;
+    long long x = A % C;
+    while(B > 0)
+    {
+        if(B % 2 == 1)
+            result = (result * x) % C;
+        x = (x * x) % C;
+        B = B / 2;
+    }
+    return result;
 }
 
 int main(void)
