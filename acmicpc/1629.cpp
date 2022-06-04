@@ -15,7 +15,7 @@ long long solve(long long A, long long B, long long C)
         x = (x * x) % C;
         B = B / 2;
     }
-    return result;
+    return result % C;
 }
 
 int main(void)
