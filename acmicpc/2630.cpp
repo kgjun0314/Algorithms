@@ -4,28 +4,19 @@
 #include <algorithm>
 using namespace std;
 
-int N;
-int board[129][129];
+int M[129][129];
+int b = 0, w = 0;
 
-int solve_w(int N, int x, int y)
+void solve(int x, int y, int n)
 {
-    if(N == 1 && board[x][y] == 0)
-    {
-        return 1;
-    }
-
-    else if(N == 1 && board[x][y] == 1)
-    {
-        return 0;
-    }
-
+    int start = M[x][y];
     bool flag = true;
-
-    for(int i = 0; i < N; i++)
+    
+    for(int i = x; i < x + n; i++)
     {
-        for(int j = 0; j < N; j++)
+        for(int j = y; j < y + n; j++)
         {
-            if(board[x + i][y + j] == 1)
+            if(M[i][j] != start)
             {
                 flag = false;
                 break;
@@ -36,54 +27,27 @@ int solve_w(int N, int x, int y)
             break;
         }
     }
-
+    
     if(flag == true)
     {
-        return 1;
-    }
-
-
-    return solve_w(N / 2, x, y) + solve_w(N / 2, x, y + N / 2) + solve_w(N / 2, x + N / 2, y) + solve_w(N / 2, x + N / 2, y + N / 2);
-}
-
-int solve_b(int N, int x, int y)
-{
-    if(N == 1 && board[x][y] == 1)
-    {
-        return 1;
-    }
-
-    else if(N == 1 && board[x][y] == 0)
-    {
-        return 0;
-    }
-
-    bool flag = true;
-
-    for(int i = 0; i < N; i++)
-    {
-        for(int j = 0; j < N; j++)
+        if(start == 1)
         {
-            if(board[x + i][y + j] == 0)
-            {
-                flag = false;
-                break;
-            }
+            b++;
         }
-        if(flag == false)
+        else if(start == 0)
         {
-            break;
+            w++;
         }
     }
-
-    if(flag == true)
+    
+    else
     {
-        return 1;
+        solve(x, y, n / 2);
+        solve(x, y + n / 2, n / 2);
+        solve(x + n / 2, y, n / 2);
+        solve(x + n / 2, y + n / 2, n / 2);
     }
-
-
-
-    return solve_b(N / 2, x, y) + solve_b(N / 2, x, y + N / 2) + solve_b(N / 2, x + N / 2, y) + solve_b(N / 2, x + N / 2, y + N / 2);
+    return;
 }
 
 int main(void)
@@ -91,22 +55,20 @@ int main(void)
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    
-    cin >> N;
 
+    int N;
+    cin >> N;
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < N; j++)
         {
-            cin >> board[i][j];
+            cin >> M[i][j];
         }
     }
-
-    int W = solve_w(N, 0, 0);
-    int B = solve_b(N, 0, 0);
-
-
-    cout << W << endl << B << endl;
-
+    
+    solve(0, 0, N);
+    
+    cout << w << endl << b << endl;
+    
     return 0;
 }
