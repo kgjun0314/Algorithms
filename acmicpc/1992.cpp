@@ -4,18 +4,19 @@
 #include <algorithm>
 using namespace std;
 
-int M[64][64];
+string M[65];
+int b = 0, w = 0;
 
-void solve(int y, int x, int N)
+void solve(int x, int y, int n)
 {
-    int start = M[y][x];
+    int start = M[x][y];
     bool flag = true;
     
-    for(int j = y; j < y + N; j++)
+    for(int i = 0; i < n; i++)
     {
-        for(int i = x; i < x + N; i++)
+        for(int j = 0; j < n; j++)
         {
-            if(M[j][i] != start)
+            if(M[x + i][y + j] != start)
             {
                 flag = false;
                 break;
@@ -29,28 +30,29 @@ void solve(int y, int x, int N)
     
     if(flag == true)
     {
-        if(start == 0)
+        if(start == '1')
         {
-            cout << "0";
+            cout << string("1");
         }
-        else if(start == 1)
+        else if(start == '0')
         {
-            cout << "1";
+            cout << string("0");
         }
     }
     
     else
     {
-        int size = N / 2;
-    
+        int size = n / 2;
+
         cout << "(";
-        solve(y, x, size);
-        solve(y, x + size, size);
-        solve(y + size, x, size);
-        solve(y + size, x + size, size);
+
+        solve(x, y,  n / 2);
+        solve(x, y + n / 2, n / 2);
+        solve(x + n / 2, y, n / 2);
+        solve(x + n / 2, y + n / 2, n / 2);
+
         cout << ")";
     }
-    
     return;
 }
 
@@ -59,18 +61,14 @@ int main(void)
     ios_base::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
-    
+
     int N;
+    string row;
     cin >> N;
-    
-    for(int j = 0; j < N; j++)
+    for(int i = 0; i < N; i++)
     {
-        string s;
-        cin >> s;
-        for(int i = 0; i < N; i++)
-        {
-            M[j][i] = s[i] - '0';
-        }
+        cin >> row;
+        M[i] = row;
     }
     
     solve(0, 0, N);
