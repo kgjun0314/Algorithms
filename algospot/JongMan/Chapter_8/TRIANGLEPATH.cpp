@@ -5,17 +5,16 @@ using namespace std;
 
 int height;
 int triangle[100][100];
-int cache[100][100];
+int dp[100][100];
 
 int path(int y, int x)
 {
 	if(y == height - 1)
 		return triangle[y][x];
 	
-	int& result = cache[y][x];
-	if(result != -1)
-		return result;
-	return result = max(path(y + 1, x), path(y + 1, x + 1)) + triangle[y][x];
+	if(dp[y][x] != -1)
+		return dp[y][x];
+	return dp[y][x] = max(path(y + 1, x), path(y + 1, x + 1)) + triangle[y][x];
 }
 
 int main(void)
@@ -24,7 +23,7 @@ int main(void)
 	cin >> C;
 	while(C--)
 	{
-		memset(cache, -1, sizeof(cache));
+		memset(dp, -1, sizeof(dp));
 		cin >> height;
 		for(int i = 0; i < height; i++)
 		{
