@@ -30,11 +30,23 @@ int main(void)
 		cin >> arysize;
 		cin >> ary;
 		
+		ary.resize(ary.length() - 1);
+		ary.erase(ary.begin());
 		deque<int> dq;
-		for(int i = 0; i < ary.length() - 1; i++)
+
+		for(int i = 0; i < ary.length(); i++)
 		{
-			if(arysize > 0 && ary[i] == '[' || ary[i] == ',')
-				dq.push_back(atoi(&ary[i + 1]));
+			if(arysize > 0 && ary[i] != ',')
+			{
+				dq.push_back(atoi(&ary[i]));
+				for(int j = 0; j < 2; j++)
+				{
+					if(ary[i + 1] != ',')
+					{
+						i++;
+					}
+				}
+			}
 		}
 
 		for(int i = 0; i < fname.length(); i++)
