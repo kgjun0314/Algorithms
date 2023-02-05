@@ -21,13 +21,12 @@ void DFS(int cur)
 {
 	visited[cur] = ++cnt;
 
-	for(auto next : graph[cur])
+	for(int i = 0; i < graph[cur].size(); i++)
 	{
-		if(visited[next])
+		if(visited[graph[cur][i]] == 0)
 		{
-			continue;
+			DFS(graph[cur][i]);
 		}
-		DFS(next);
 	}
 }
 

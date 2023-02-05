@@ -23,11 +23,10 @@ void DFS(int cur)
 
 	for(int i = 0; i < graph[cur].size(); i++)
 	{
-		if(visited[graph[cur][i]] != 0)
+		if(visited[graph[cur][i]] == 0)
 		{
-			continue;
+			DFS(graph[cur][i]);
 		}
-		DFS(graph[cur][i]);
 	}
 }
 
