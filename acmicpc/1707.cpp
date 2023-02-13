@@ -38,7 +38,7 @@ bool dfs(int current, int c)
 
 void solve()
 {
-	for(int i = 0; i < V; i++)
+	for(int i = 1; i < V; i++)
 	{
 		if(color[i] == 0)
 		{
