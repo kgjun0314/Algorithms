@@ -6,6 +6,8 @@
         "stack": "cpp",
         "vector": "cpp",
         "ostream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp"
     }
 }
