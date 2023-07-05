@@ -16,6 +16,25 @@ using namespace std;
 int N, M, num;
 vector<int> vec1;
 
+int bs(int first, int end, int target)
+{
+    int mid = (first + end) / 2;
+    if(first > end)
+        return -1;
+    else if(vec1[mid] < target)
+    {
+        return bs(mid + 1, end, target);
+    }
+    else if(target < vec1[mid])
+    {
+        return bs(first, mid - 1, target);
+    }
+    else if(target == vec1[mid])
+    {
+        return mid;
+    }
+}
+
 int main(void)
 {
     ios_base::sync_with_stdio(0);
@@ -39,7 +58,7 @@ int main(void)
 	for(int i = 0; i < M; i++)
 	{
 		cin >> num;
-		if(vec1[lower_bound(vec1.begin(), vec1.end(), num) - vec1.begin()] == num)
+		if(bs(0, vec1.size() - 1, num) != -1)
 		{
 			vec2[i] = 1;
 		}
