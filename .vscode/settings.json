@@ -9,6 +9,8 @@
         "sstream": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "complex": "cpp",
+        "chrono": "cpp"
     }
 }
