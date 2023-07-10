@@ -12,7 +12,7 @@ i = 0
 j = len(a) - 1
 cnt = 0
 
-while i <= j and i >= 0 and j < len(a):
+while i < j and i >= 0 and j < len(a):
     if a[i] + a[j] < x:
         i += 1
     elif a[i] + a[j] == x:
