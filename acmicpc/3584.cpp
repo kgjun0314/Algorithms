@@ -9,7 +9,7 @@ using namespace std;
 
 int T, N, A, B;
 int parent[10001];
-bool visit[10001];
+bool visited[10001];
 
 int main(void)
 {
@@ -25,7 +25,7 @@ int main(void)
         for(int i = 1; i <= N; i++)
         {
             parent[i] = i;
-            visit[i] = false;
+            visited[i] = false;
         }
 
         for(int i = 0; i < N - 1; i++)
@@ -35,24 +35,24 @@ int main(void)
         }
 
         cin >> A >> B;
-        visit[A] = true;
+        visited[A] = true;
 
         while(A != parent[A])
         {
             A = parent[A];
-            visit[A] = true;
+            visited[A] = true;
         }
 
         while(true)
         {
-            if(visit[B])
+            if(visited[B])
             {
                 cout << B << endl;
                 break;
             }
             else
             {
-                visit[B] = true;
+                visited[B] = true;
                 B = parent[B];
             }
         }
