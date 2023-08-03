@@ -216,16 +216,16 @@ int main(void)
                 if(SCC[sorted[i] - 1][j] > N)
                 {
                     visited[SCC[sorted[i] - 1][j]] = true;
-                    sign[SCC[sorted[i] - 1][j]] = 1;
+                    sign[SCC[sorted[i] - 1][j]] = 0;
                     visited[SCC[sorted[i] - 1][j] - N] = true;
-                    sign[SCC[sorted[i] - 1][j] - N] = 0;
+                    sign[SCC[sorted[i] - 1][j] - N] = 1;
                 }
                 else
                 {
                     visited[SCC[sorted[i] - 1][j]] = true;
-                    sign[SCC[sorted[i] - 1][j]] = 1;
+                    sign[SCC[sorted[i] - 1][j]] = 0;
                     visited[SCC[sorted[i] - 1][j] + N] = true;
-                    sign[SCC[sorted[i] - 1][j] + N] = 0;
+                    sign[SCC[sorted[i] - 1][j] + N] = 1;
                 }
             }
         }
@@ -233,7 +233,7 @@ int main(void)
 
     for(int i = 1; i <= N; i++)
     {
-        if(sign[i] == 1)
+        if(sign[i] == 0)
             cout << "R";
         else
             cout << "B";
