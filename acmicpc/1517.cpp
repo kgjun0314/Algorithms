@@ -70,6 +70,7 @@ int main(void)
     {
         int q = arr[i].second;
         ans += query(1, 0, N - 1, 0, q) - 1;
+//      ans += query(1, 0, N - 1, 0, q - 1); 과 같음  
         update(1, 0, N - 1, q, 0);
     }
 
