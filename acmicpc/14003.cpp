@@ -12,7 +12,7 @@
 #define endl "\n"
 using namespace std;
 
-long long N, item, listIdx = 0;
+long long N;
 vector<long long> vec;
 vector<long long> lis;
 vector<long long> idx;
