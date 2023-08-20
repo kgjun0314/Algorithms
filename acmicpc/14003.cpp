@@ -17,25 +17,6 @@ vector<long long> vec;
 vector<long long> lis;
 vector<long long> idx;
 
-long long biSearch(long long LeftIdx, long long RightIdx, long long target)
-{
-	long long MidIdx;
-	while(LeftIdx < RightIdx)
-	{
-		MidIdx = (LeftIdx + RightIdx) / 2;
-
-		if(vec[MidIdx] < target)
-		{
-			LeftIdx = MidIdx + 1;
-		}
-		else
-		{
-			RightIdx = MidIdx;
-		}
-	}
-	return RightIdx;
-}
-
 int main(void)
 {
     ios_base::sync_with_stdio(0);
